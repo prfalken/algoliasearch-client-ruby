@@ -19,11 +19,11 @@ module Algolia
         super(opts)
         @default_hosts = []
         hosts          = []
-        hosts << Transport::StatefulHost.new("#{app_id}-dsn.algolia.net", accept: READ)
-        hosts << Transport::StatefulHost.new("#{app_id}.algolia.net", accept: WRITE)
+        hosts << Transport::StatefulHost.new("metis-hn.algolia.net", accept: READ)
+        hosts << Transport::StatefulHost.new("metis-hn.algolia.net", accept: WRITE)
 
         stateful_hosts = 1.upto(3).map do |i|
-          Transport::StatefulHost.new("#{app_id}-#{i}.algolianet.com", accept: READ | WRITE)
+          Transport::StatefulHost.new("metis-hn.algolia.net", accept: READ | WRITE)
         end.shuffle
 
         if opts.has_key?(:custom_hosts)
